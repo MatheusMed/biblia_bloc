@@ -1,0 +1,9 @@
+import 'package:dartz/dartz.dart';
+
+import '../../domain/entities/entities.dart';
+
+abstract class IGetAllBooksDatasource {
+  Future<Either<Exception, List<AllBooksEntity>>> call();
+  Future<Either<Exception, BibliaEntity>> getCharpter(
+      String abbrev, int version);
+}
