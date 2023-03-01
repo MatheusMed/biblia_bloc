@@ -22,11 +22,11 @@ class ChaptersList extends StatefulWidget {
 
 class _ChaptersListState extends State<ChaptersList> {
   final controller = GetIt.I.get<ChaptersBloc>();
-  final double size = 16;
 
   @override
   void initState() {
     controller.getCharpter(widget.abbrev, widget.charpts);
+    controller.getValues();
     super.initState();
   }
 
@@ -39,11 +39,11 @@ class _ChaptersListState extends State<ChaptersList> {
             Row(
               children: [
                 IconButton(
-                  onPressed: () => controller.changeSizeText(size),
+                  onPressed: () => controller.changeSizeText(SizeText.aumentar),
                   icon: const Icon(Icons.add),
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () => controller.changeSizeText(SizeText.diminuir),
                   icon: const Icon(Icons.remove),
                 ),
               ],
@@ -66,14 +66,18 @@ class _ChaptersListState extends State<ChaptersList> {
                   itemCount: state.bibliaEntity!.verses!.length,
                   itemBuilder: (context, index) {
                     var verser = state.bibliaEntity!.verses![index];
-                    return ListTile(
-                      title: Text(
-                        '${verser.number!} - ${verser.text!}',
-                        style: TextStyle(
-                          fontSize: state.doubleSizeText,
-                        ),
-                      ),
-                    );
+                    return ValueListenableBuilder(
+                        valueListenable: controller.size,
+                        builder: (context, valor, child) {
+                          return ListTile(
+                            title: Text(
+                              '${verser.number!} - ${verser.text!}',
+                              style: TextStyle(
+                                fontSize: valor,
+                              ),
+                            ),
+                          );
+                        });
                   },
                 );
               case ChaptersStatus.error:
