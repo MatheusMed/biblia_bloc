@@ -15,8 +15,8 @@ class ListLivros extends StatelessWidget {
         var livro = listaLivrros?[index];
         return ListTile(
           title: Text(livro!.name!),
-          subtitle: Text(livro.group!),
-          trailing: Text('Capitulos  ${livro.chapters}'),
+          trailing: Text(livro.group!),
+          subtitle: Text('Capitulos  ${livro.chapters}'),
           onTap: () {
             Navigator.push(
                 context,

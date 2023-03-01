@@ -1,3 +1,4 @@
+import 'package:biblia_bloc/app/core/http_services.dart';
 import 'package:biblia_bloc/app/data/datasource/get_all_books_datasource.dart';
 import 'package:biblia_bloc/app/data/datasource/remote/get_all_books_remote.dart';
 import 'package:biblia_bloc/app/data/repositories/implementations/get_all_books_data_repository.dart';
@@ -27,7 +28,7 @@ class Injector {
     // datasource
     injector.registerLazySingleton<IGetAllBooksDatasource>(
         () => GetAllBooksRemoteImp(injector()));
-    //
-    injector.registerFactory<Dio>(() => Dio());
+    // http services
+    injector.registerFactory<IHttpServices>(() => HttpServices());
   }
 }

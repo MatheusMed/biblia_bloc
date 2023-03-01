@@ -20,4 +20,8 @@ class ChaptersBloc extends Cubit<ChaptersState> {
       emit(state.copyWith(status: ChaptersStatus.error));
     }
   }
+
+  changeSizeText(double size) {
+    emit(state.copyWith(doubleSizeText: size++));
+  }
 }

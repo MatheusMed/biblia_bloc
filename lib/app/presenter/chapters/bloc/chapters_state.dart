@@ -6,16 +6,23 @@ enum ChaptersStatus { initial, loading, sucess, error }
 class ChaptersState {
   final BibliaEntity? bibliaEntity;
   final ChaptersStatus status;
+  final double? doubleSizeText;
 
-  ChaptersState({this.bibliaEntity, this.status = ChaptersStatus.initial});
+  ChaptersState({
+    this.bibliaEntity,
+    this.doubleSizeText,
+    this.status = ChaptersStatus.initial,
+  });
 
   ChaptersState copyWith({
     BibliaEntity? bibliaEntity,
     ChaptersStatus? status,
+    double? doubleSizeText,
   }) {
     return ChaptersState(
       bibliaEntity: bibliaEntity ?? this.bibliaEntity,
       status: status ?? this.status,
+      doubleSizeText: doubleSizeText ?? this.doubleSizeText,
     );
   }
 }

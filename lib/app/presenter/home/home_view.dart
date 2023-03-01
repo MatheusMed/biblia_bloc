@@ -1,13 +1,9 @@
 import 'package:biblia_bloc/app/presenter/home/bloc/home_bloc.dart';
 import 'package:biblia_bloc/app/presenter/home/widgets/list_livros.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
-import '../../data/datasource/remote/get_all_books_remote.dart';
-import '../../data/repositories/implementations/get_all_books_data_repository.dart';
-import '../../domain/usecases/implementations/get_all_books_usecase_imp.dart';
 import 'bloc/home_state.dart';
 
 class HomeView extends StatefulWidget {

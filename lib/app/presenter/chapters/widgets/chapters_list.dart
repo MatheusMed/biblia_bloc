@@ -22,6 +22,7 @@ class ChaptersList extends StatefulWidget {
 
 class _ChaptersListState extends State<ChaptersList> {
   final controller = GetIt.I.get<ChaptersBloc>();
+  final double size = 16;
 
   @override
   void initState() {
@@ -34,6 +35,20 @@ class _ChaptersListState extends State<ChaptersList> {
     return Scaffold(
         appBar: AppBar(
           title: Text('Autor ${widget.author}'),
+          actions: [
+            Row(
+              children: [
+                IconButton(
+                  onPressed: () => controller.changeSizeText(size),
+                  icon: const Icon(Icons.add),
+                ),
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.remove),
+                ),
+              ],
+            ),
+          ],
         ),
         body: BlocBuilder<ChaptersBloc, ChaptersState>(
           bloc: controller,
@@ -52,7 +67,12 @@ class _ChaptersListState extends State<ChaptersList> {
                   itemBuilder: (context, index) {
                     var verser = state.bibliaEntity!.verses![index];
                     return ListTile(
-                      title: Text('${verser.number!} - ${verser.text!}'),
+                      title: Text(
+                        '${verser.number!} - ${verser.text!}',
+                        style: TextStyle(
+                          fontSize: state.doubleSizeText,
+                        ),
+                      ),
                     );
                   },
                 );
