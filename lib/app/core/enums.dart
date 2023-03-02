@@ -1,0 +1,4 @@
+enum SizeText {
+  diminuir,
+  aumentar,
+}

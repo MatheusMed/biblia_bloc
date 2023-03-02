@@ -8,17 +8,15 @@ class HomeBloc extends Cubit<HomeState> {
   HomeBloc(this._getAllBooksUsecases) : super(HomeState());
 
   getAllLivros() async {
-    try {
-      emit(state.copyWith(homeStatus: HomeStatus.loading));
-      final response = await _getAllBooksUsecases();
-      response.fold(
-        (error) => debugPrint(error.toString()),
-        (sucess) => emit(
+    emit(state.copyWith(homeStatus: HomeStatus.loading));
+    final response = await _getAllBooksUsecases();
+    response.fold(
+      (error) => debugPrint(error.toString()),
+      (sucess) async {
+        emit(
           state.copyWith(homeStatus: HomeStatus.sucess, listaLivrros: sucess),
-        ),
-      );
-    } catch (e) {
-      emit(state.copyWith(homeStatus: HomeStatus.error));
-    }
+        );
+      },
+    );
   }
 }

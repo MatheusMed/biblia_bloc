@@ -1,9 +1,12 @@
 import 'package:biblia_bloc/app/core/injector.dart';
+import 'package:biblia_bloc/app/core/services/hive_config.dart';
 import 'package:biblia_bloc/app/presenter/home/home_view.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   Injector.init();
+  await HiveConfig.init();
   runApp(const MyApp());
 }
 

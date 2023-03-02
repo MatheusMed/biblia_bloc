@@ -5,10 +5,7 @@ import 'package:biblia_bloc/app/presenter/chapters/bloc/chapters_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-enum SizeText {
-  diminuir,
-  aumentar,
-}
+import '../../../core/enums.dart';
 
 class ChaptersBloc extends Cubit<ChaptersState> {
   final IGetAllBooksUsecases _allBooksUsecases;
@@ -53,4 +50,6 @@ class ChaptersBloc extends Cubit<ChaptersState> {
       size.value = 16.0;
     }
   }
+
+  savelistMap() async {}
 }

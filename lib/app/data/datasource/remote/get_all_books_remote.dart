@@ -20,7 +20,7 @@ class GetAllBooksRemoteImp implements IGetAllBooksDatasource {
       return right(
           (books.data as List).map((e) => AllBooksDto.fromMap(e)).toList());
     } catch (e) {
-      return Left(Exception('Erro no datasource remote'));
+      return Left(Exception('Erro no datasource remote remote'));
     }
   }
 

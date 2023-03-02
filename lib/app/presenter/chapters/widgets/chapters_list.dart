@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
 import '../bloc/chapters_state.dart';
+import '../../../core/enums.dart';
 
 class ChaptersList extends StatefulWidget {
   final int charpts;
