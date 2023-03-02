@@ -10,8 +10,10 @@ import '../get_all_books_datasource.dart';
 
 class GetAllBooksOfflineDecoratorImp
     extends GetAllBooksDatasourceOfflineDecorator {
+  final IHiveStorage _hiveStorage;
   GetAllBooksOfflineDecoratorImp(
     IGetAllBooksDatasource allBooksDatasourceOffline,
+    this._hiveStorage,
   ) : super(allBooksDatasourceOffline);
   @override
   Future<Either<Exception, List<AllBooksEntity>>> call() async {
@@ -23,14 +25,10 @@ class GetAllBooksOfflineDecoratorImp
   }
 
   _saveInCache(List<AllBooksEntity> sucesso) async {
-    Box box = await Hive.openBox('listaLivros');
-    await box.put('listaOff', sucesso);
+    return await _hiveStorage.save('listaOff', sucesso);
   }
 
   _getInCache() async {
-    Box box = await Hive.openBox('listaLivros');
-    List<AllBooksEntity> lista = box.get('listaOff')!.cast<AllBooksEntity>();
-
-    return lista;
+    return await _hiveStorage.get('listaOff');
   }
 }

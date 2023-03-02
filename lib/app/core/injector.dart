@@ -35,8 +35,7 @@ class Injector {
     // datasource
     injector.registerLazySingleton<IGetAllBooksDatasource>(
       () => GetAllBooksOfflineDecoratorImp(
-        GetAllBooksRemoteImp(injector()),
-      ),
+          GetAllBooksRemoteImp(injector()), injector()),
     );
 
     // http services

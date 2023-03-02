@@ -10,15 +10,16 @@ abstract class IHiveStorage {
 }
 
 class HiveStorage implements IHiveStorage {
-  final box = Hive.box<List<AllBooksEntity>>('listaLivros');
-
   @override
   save(String key, valor) async {
-    return await box.put(key, valor);
+    Box box = await Hive.openBox('listaLivros');
+    await box.put('listaOff', valor);
   }
 
   @override
-  get(String key) {
-    return box.get(key);
+  get(String key) async {
+    Box box = await Hive.openBox('listaLivros');
+    List<AllBooksEntity> lista = box.get('listaOff')!.cast<AllBooksEntity>();
+    return lista;
   }
 }
