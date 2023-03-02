@@ -2,25 +2,25 @@
 import 'package:flutter/material.dart';
 
 import '../../../domain/entities/biblia_entity.dart';
+import '../../../domain/entities/verses_entity.dart';
 
 enum ChaptersStatus { initial, loading, sucess, error }
 
 class ChaptersState {
-  final BibliaEntity? bibliaEntity;
+  final List<VersesEntity>? listVerser;
   final ChaptersStatus status;
 
   ChaptersState({
-    this.bibliaEntity,
+    this.listVerser,
     this.status = ChaptersStatus.initial,
   });
 
   ChaptersState copyWith({
-    BibliaEntity? bibliaEntity,
+    List<VersesEntity>? listVerser,
     ChaptersStatus? status,
-    ValueNotifier<double>? doubleSizeText,
   }) {
     return ChaptersState(
-      bibliaEntity: bibliaEntity ?? this.bibliaEntity,
+      listVerser: listVerser ?? this.listVerser,
       status: status ?? this.status,
     );
   }

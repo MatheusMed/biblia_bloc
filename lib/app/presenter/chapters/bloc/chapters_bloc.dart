@@ -19,12 +19,12 @@ class ChaptersBloc extends Cubit<ChaptersState> {
     try {
       emit(state.copyWith(status: ChaptersStatus.loading));
       final response = await _allBooksUsecases.getCharpter(abbrev, version);
-      return response.fold(
-          (error) => debugPrint(error.toString()),
-          (sucess) => emit(state.copyWith(
-                status: ChaptersStatus.sucess,
-                bibliaEntity: sucess,
-              )));
+      return response.fold((error) => debugPrint(error.toString()), (sucess) {
+        emit(state.copyWith(
+          status: ChaptersStatus.sucess,
+          listVerser: sucess,
+        ));
+      });
     } catch (e) {
       emit(state.copyWith(status: ChaptersStatus.error));
     }

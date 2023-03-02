@@ -2,6 +2,7 @@ import 'package:biblia_bloc/app/domain/entities/biblia_entity.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../entities/all_books_entity.dart';
+import '../../entities/verses_entity.dart';
 import '../../repositories/get_all_books_repository.dart';
 import '../get_all_books_usecases.dart';
 
@@ -16,7 +17,7 @@ class GetAllBooksUsecasesImp implements IGetAllBooksUsecases {
   }
 
   @override
-  Future<Either<Exception, BibliaEntity>> getCharpter(
+  Future<Either<Exception, List<VersesEntity>>> getCharpter(
       String abbrev, int version) async {
     return await _getAllBooksRepository.getCharpter(abbrev, version);
   }

@@ -2,6 +2,7 @@ import 'package:biblia_bloc/app/domain/entities/biblia_entity.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../../domain/entities/all_books_entity.dart';
+import '../../../domain/entities/verses_entity.dart';
 import '../get_all_books_datasource.dart';
 
 class GetAllBooksDatasourceOfflineDecorator implements IGetAllBooksDatasource {
@@ -13,7 +14,7 @@ class GetAllBooksDatasourceOfflineDecorator implements IGetAllBooksDatasource {
       _allBooksDatasourceOffline();
 
   @override
-  Future<Either<Exception, BibliaEntity>> getCharpter(
+  Future<Either<Exception, List<VersesEntity>>> getCharpter(
           String abbrev, int version) =>
       _allBooksDatasourceOffline.getCharpter(abbrev, version);
 }

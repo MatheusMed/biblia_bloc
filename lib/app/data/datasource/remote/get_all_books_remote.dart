@@ -1,10 +1,12 @@
 import 'package:biblia_bloc/app/core/http_services.dart';
 import 'package:biblia_bloc/app/core/utils.dart';
 import 'package:biblia_bloc/app/data/dto/biblia_dto.dart';
+import 'package:biblia_bloc/app/data/dto/dto.dart';
 import 'package:biblia_bloc/app/domain/entities/biblia_entity.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../../domain/entities/all_books_entity.dart';
+import '../../../domain/entities/verses_entity.dart';
 import '../../dto/all_books_dto.dart';
 import '../get_all_books_datasource.dart';
 
@@ -25,14 +27,16 @@ class GetAllBooksRemoteImp implements IGetAllBooksDatasource {
   }
 
   @override
-  Future<Either<Exception, BibliaEntity>> getCharpter(
+  Future<Either<Exception, List<VersesEntity>>> getCharpter(
       String abbrev, int version) async {
     try {
       var charpters =
           await httpServices.dio().get('/verses/nvi/$abbrev/$version');
-      var result = BibliaDto.fromMap(charpters.data);
+      var data = (charpters.data["verses"] as List)
+          .map((e) => VersesDto.fromMap(e))
+          .toList();
 
-      return Right(result);
+      return Right(data);
     } catch (e) {
       return Left(Exception('Erro na datasource get Charpters'));
     }

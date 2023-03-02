@@ -5,7 +5,6 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 
 import '../../../domain/entities/all_books_entity.dart';
-import '../../../domain/entities/biblia_entity.dart';
 
 class HomeBloc extends Cubit<HomeState> {
   final IGetAllBooksUsecases _getAllBooksUsecases;

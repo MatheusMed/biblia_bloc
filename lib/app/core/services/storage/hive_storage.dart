@@ -1,5 +1,6 @@
 // ignore_for_file: await_only_futures
 
+import 'package:biblia_bloc/app/domain/entities/verses_entity.dart';
 import 'package:hive/hive.dart';
 
 import '../../../domain/entities/all_books_entity.dart';
@@ -29,7 +30,7 @@ class HiveStorage implements IHiveStorage {
   @override
   get(String key) async {
     Box box = await Hive.openBox('livro');
-    BibliaEntity lista = box.get('livroOff');
+    List<VersesEntity> lista = box.get('livroOff')!.cast<VersesEntity>();
     return lista;
   }
 

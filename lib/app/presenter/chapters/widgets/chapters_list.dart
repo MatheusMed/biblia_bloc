@@ -64,9 +64,9 @@ class _ChaptersListState extends State<ChaptersList> {
                 );
               case ChaptersStatus.sucess:
                 return ListView.builder(
-                  itemCount: state.bibliaEntity!.verses!.length,
+                  itemCount: state.listVerser!.length,
                   itemBuilder: (context, index) {
-                    var verser = state.bibliaEntity!.verses![index];
+                    var verser = state.listVerser![index];
                     return ValueListenableBuilder(
                         valueListenable: controller.size,
                         builder: (context, valor, child) {
