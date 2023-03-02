@@ -1,3 +1,4 @@
+import 'package:biblia_bloc/app/core/services/storage/hive_storage.dart';
 import 'package:biblia_bloc/app/core/services/storage/storage.dart';
 import 'package:biblia_bloc/app/domain/usecases/get_all_books_usecases.dart';
 import 'package:biblia_bloc/app/presenter/chapters/bloc/chapters_state.dart';
@@ -21,7 +22,9 @@ class ChaptersBloc extends Cubit<ChaptersState> {
       return response.fold(
           (error) => debugPrint(error.toString()),
           (sucess) => emit(state.copyWith(
-              status: ChaptersStatus.sucess, bibliaEntity: sucess)));
+                status: ChaptersStatus.sucess,
+                bibliaEntity: sucess,
+              )));
     } catch (e) {
       emit(state.copyWith(status: ChaptersStatus.error));
     }
@@ -50,6 +53,4 @@ class ChaptersBloc extends Cubit<ChaptersState> {
       size.value = 16.0;
     }
   }
-
-  savelistMap() async {}
 }

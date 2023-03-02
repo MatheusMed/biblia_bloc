@@ -3,9 +3,9 @@
 import 'package:biblia_bloc/app/core/services/storage/hive_storage.dart';
 import 'package:biblia_bloc/app/data/datasource/offline/get_all_books_datasource_offline.dart';
 import 'package:dartz/dartz.dart';
-import 'package:hive/hive.dart';
 
 import '../../../domain/entities/all_books_entity.dart';
+import '../../../domain/entities/biblia_entity.dart';
 import '../get_all_books_datasource.dart';
 
 class GetAllBooksOfflineDecoratorImp
@@ -24,11 +24,24 @@ class GetAllBooksOfflineDecoratorImp
     });
   }
 
+  @override
+  Future<Either<Exception, BibliaEntity>> getCharpter(
+      String abbrev, int version) async {
+    return (await super.getCharpter(abbrev, version))
+        .fold((error) async => Right(await _getInCacheChapeter()), (sucess) {
+      return Right(sucess);
+    });
+  }
+
   _saveInCache(List<AllBooksEntity> sucesso) async {
-    return await _hiveStorage.save('listaOff', sucesso);
+    return await _hiveStorage.saveListLivros('listaOff', sucesso);
   }
 
   _getInCache() async {
-    return await _hiveStorage.get('listaOff');
+    return await _hiveStorage.getLislivrros('listaOff');
+  }
+
+  _getInCacheChapeter() async {
+    return await _hiveStorage.get('livroOff');
   }
 }

@@ -19,7 +19,8 @@ class Injector {
     final injector = GetIt.instance;
 
     //controllers
-    injector.registerFactory<HomeBloc>(() => HomeBloc(injector.get()));
+    injector
+        .registerFactory<HomeBloc>(() => HomeBloc(injector.get(), injector()));
     injector.registerFactory<ChaptersBloc>(() => ChaptersBloc(
           injector.get(),
           injector.get(),

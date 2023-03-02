@@ -14,7 +14,6 @@ class GetAllBooksDatasourceOfflineDecorator implements IGetAllBooksDatasource {
 
   @override
   Future<Either<Exception, BibliaEntity>> getCharpter(
-      String abbrev, int version) {
-    throw UnimplementedError();
-  }
+          String abbrev, int version) =>
+      _allBooksDatasourceOffline.getCharpter(abbrev, version);
 }
